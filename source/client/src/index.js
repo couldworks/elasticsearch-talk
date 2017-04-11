@@ -3,6 +3,7 @@ import appReducer from "./store/reducers";
 import initialState from "./initialState.json";
 import { createStore } from "redux";
 
+
 const store = createStore(appReducer, initialState);
 
 store.subscribe(() => console.log(store.getState()));
