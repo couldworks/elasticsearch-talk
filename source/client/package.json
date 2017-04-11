@@ -2,9 +2,9 @@
   "name": "ski-day-counter",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist",
+  "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server"
+    "start": "./node_modules/.bin/babel-node ./src/index.js"
   },
   "author": "",
   "license": "ISC",

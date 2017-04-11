@@ -1,5 +1,4 @@
 const path = require('path');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
 	entry: "./src/index.js",
@@ -27,24 +26,7 @@ module.exports = {
 				test: /\.json$/,
 				exclude: /(node_modules)/,
 				loader: 'json-loader'
-			},
-			{
-                test: /\.css$/,
-                loader: 'style-loader!css-loader!autoprefixer-loader'
-
-            },
-            {
-                test: /\.scss/,
-                loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
-            }
+			}
 		]
-	},
-    plugins: [
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.optimize\.css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: {discardComments: {removeAll: true}},
-            canPrint: true
-        })
-    ]
+	}
 }
