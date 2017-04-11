@@ -1,12 +1,12 @@
 {
 	"Didyoumean": [],
 	"Search": "",
-	"Edit": {},
+	"EditNews": {},
 	"PageSize": 30,
 	"NextToken": "eb0f5313-436e-4410-8b04-38d5b26fce35",
 	"PreviusToken": "f2f411ee-333a-4452-8f98-7295d5835fb6",
 	"ActualPage": 1,
-	"Suggestions": [
+	"AllSuggestions": [
 		{
 		   "title":"Australia celebrates Australia Day 2009",
 		   "timestamp":"2014-06-28T12:09:39Z",
@@ -148,7 +148,7 @@
 		   "popularity_score":8.9597076675773e-5
 		}
 	],
-	"News": [
+	"AllNews": [
 		{  
 		   "title":"News briefs:May 13, 2006",
 		   "timestamp":"2007-05-24T21:29:14Z",
@@ -267,5 +267,5 @@
 		   "version":434697
 		}
 	],
-	"errors":[]
+	"Errors":[]
 }

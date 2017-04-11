@@ -1,18 +1,17 @@
 import C from "./constants";
-import { ActualPage } from "./store/reducers";
+import appReducer from "./store/reducers";
+import initialState from "./initialState.json";
+import { createStore } from "redux";
 
-const state = 1;
+const store = createStore(appReducer, initialState);
 
-const action = {
-	type: C.SET_ACTUALPAGE,
-	payload: 2
-};
+store.subscribe(() => console.log(store.getState()));
 
-const nextState = ActualPage(state, action);
+console.log("initial state", store.getState());
 
-console.log(`
-	initial page: ${state}
-	action: ${JSON.stringify(action)}
-	new page: ${nextState}
-`);
+store.dispatch({
+	type: C.SET_PAGESIZE,
+	payload: 5
+});
 
+console.log("next state", store.getState());
