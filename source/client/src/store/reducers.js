@@ -122,7 +122,6 @@ export default combineReducers({
 	EditNews,
 	PageSize,
 	NextToken,
-	NextToken,
 	PreviusToken,
 	ActualPage,
 	AllSuggestions,

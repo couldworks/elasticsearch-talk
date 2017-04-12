@@ -1,18 +1,20 @@
 import C from "./constants";
-import appReducer from "./store/reducers";
-import initialState from "./initialState.json";
-import { createStore } from "redux";
+import storeFactory from "./store";
 
+const initialState = (localStorage["redux-store"]) ?
+	JSON.parse(localStorage["redux-store"]) : 
+	{};
 
-const store = createStore(appReducer, initialState);
+const saveState = () => {
+	const state = JSON.stringify(store.getState());
+	localStorage["redux-store"] = state;
+};
 
-store.subscribe(() => console.log(store.getState()));
+const store = storeFactory(initialState);
 
-console.log("initial state", store.getState());
+store.subscribe(saveState);
 
 store.dispatch({
-	type: C.SET_PAGESIZE,
-	payload: 5
+	type: C.ADD_ERROR,
+	payload: "One strange error"
 });
-
-console.log("next state", store.getState());
