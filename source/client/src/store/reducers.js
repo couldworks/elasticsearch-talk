@@ -39,6 +39,8 @@ export const News = (state=null, action) =>
 
 export const AllNews = (state=[], action) =>{
 	
+	let newArray = [];
+	
 	switch(action.type){
 		case C.ADD_NEWS :
 			
@@ -49,6 +51,12 @@ export const AllNews = (state=[], action) =>{
 				[
 					...state,
 					News(null, action)
+				];
+		case C.ADD_NEWS_BULK:
+			
+			return [
+					...state,
+					...action.payload
 				];
 		case C.REMOVE_NEWS :
 			return state.filter(news => news.title !== action.payload);
@@ -76,7 +84,7 @@ export const Didyoumean = (state=[], action) => {
 		case C.ADD_DIDYOUMEAN :
 			return [
 				...state,
-				action.payload
+				...action.payload
 			];
 		case C.CLEAR_DIDYOUMEAN :
 			return [];
