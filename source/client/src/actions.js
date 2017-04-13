@@ -22,6 +22,13 @@ export function AddNews(news={}){
 	}
 }
 
+export const EditNews = (news={}) => {
+	return {
+		type: C.EDIT_NEWS,
+		payload: news
+	}
+}
+
 export const RemoveNews = (news={}) =>{
 	return {
 		type: C.REMOVE_NEWS,

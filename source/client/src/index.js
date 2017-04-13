@@ -1,5 +1,5 @@
 import storeFactory from "./store";
-import { AddPageSize, AddNews, AddNewsBulk, RemoveNews, AddDidyoumean, ClearDidyoumean, Search, ClearSearch, AddSuggestionsBulk, ClearSuggestion, CancelEdit, SetNextToken, SetPreviusToken, SetActualPage, AddError, ClearError } from "./actions";
+import { AddPageSize, AddNews, EditNews, AddNewsBulk, RemoveNews, AddDidyoumean, ClearDidyoumean, Search, ClearSearch, AddSuggestionsBulk, ClearSuggestion, CancelEdit, SetNextToken, SetPreviusToken, SetActualPage, AddError, ClearError } from "./actions";
 
 const store = storeFactory();
 
@@ -211,7 +211,19 @@ let news4 = {
 		};
 
 
-store.dispatch(AddNews(news1));
-store.dispatch(AddNews(news2));
-store.dispatch(AddNewsBulk([news3, news4]));
+ store.dispatch(AddPageSize(5));
+ store.dispatch(AddNews(news1));
+ store.dispatch(AddNewsBulk([news2, news3, news4]));
+ store.dispatch(RemoveNews("Australia celebrates Australia 4"));
+ //store.dispatch(AddDidyoumean(["Mean 1", "Mean 2"]));
+ store.dispatch(Search("Paco is a nice guy"));
+ store.dispatch(ClearSearch());
+ store.dispatch(AddSuggestionsBulk(["Paco is a nice guy", "Paco is not a nice guy", "Maybe, Paco is a nice guy"]));
+ store.dispatch(EditNews(news1));
+ store.dispatch(CancelEdit());
+ store.dispatch(SetNextToken("ASDASDAD-ASDADAS-ASDASDA-12313123"));
+ store.dispatch(SetActualPage("ASD-WE-RWERWER-XFGDFGDG-23423424"));
+ store.dispatch(AddError("Paco is a gay person"));
+ //store.dispatch(ClearError("Paco is a gay person"));
+
 
