@@ -40,7 +40,7 @@ export const AddDidyoumean = (phrases=[]) =>{
 
 	return {
 		type: C.ADD_DIDYOUMEAN,
-		payload: phrase
+		payload: phrases
 	}
 }
 

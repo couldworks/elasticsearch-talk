@@ -215,7 +215,8 @@ let news4 = {
  store.dispatch(AddNews(news1));
  store.dispatch(AddNewsBulk([news2, news3, news4]));
  store.dispatch(RemoveNews("Australia celebrates Australia 4"));
- //store.dispatch(AddDidyoumean(["Mean 1", "Mean 2"]));
+ store.dispatch(AddDidyoumean(["Mean 1", "Mean 2"]));
+ store.dispatch(ClearDidyoumean());
  store.dispatch(Search("Paco is a nice guy"));
  store.dispatch(ClearSearch());
  store.dispatch(AddSuggestionsBulk(["Paco is a nice guy", "Paco is not a nice guy", "Maybe, Paco is a nice guy"]));
@@ -224,6 +225,6 @@ let news4 = {
  store.dispatch(SetNextToken("ASDASDAD-ASDADAS-ASDASDA-12313123"));
  store.dispatch(SetActualPage("ASD-WE-RWERWER-XFGDFGDG-23423424"));
  store.dispatch(AddError("Paco is a gay person"));
- //store.dispatch(ClearError("Paco is a gay person"));
+ store.dispatch(ClearError(0));
 
 
