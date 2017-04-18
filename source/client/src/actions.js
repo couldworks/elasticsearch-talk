@@ -1,4 +1,5 @@
 import C from "./constants";
+import fetch from "isomorphic-fetch";
 
 export function AddPageSize(page=1){
 	
@@ -13,6 +14,19 @@ export function AddNewsBulk(news=[]){
 		type: C.ADD_NEWS_BULK,
 		payload: news
 	}
+}
+
+export const AllNews = () => dispatch =>{
+
+	fetch("http://localhost:3333/news/")
+		.then(response => response.json())
+		.then(news => {
+			news.hits.map(value => dispatch(AddNews(value._source)));
+		})
+		.catch(errir => {
+			dispatch(AddError(error.message));
+		});
+
 }
 
 export function AddNews(news={}){

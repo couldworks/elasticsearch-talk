@@ -1,0 +1,16 @@
+{
+  "suggest": {
+    "simple_phrase" : [
+      {
+        "text" : "noble prize",
+        "offset" : 0,
+        "length" : 11,
+        "options" : [ {
+          "text" : "nobel prize",
+          "highlighted": "<em>nobel</em> prize",
+          "score" : 0.5962314
+        }]
+      }
+    ]
+  }
+}
