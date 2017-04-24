@@ -72,7 +72,12 @@ export const AllSuggestions = (state=[], action) => {
 		case C.CLEAR_SUGGESTIONS : 
 			return [];
 		case C.CHANGE_SUGGESTIONS :
-			return action.payload
+			return action.payload;
+		case C.ADD_SUGGESTIONS :
+			return [
+				...state,
+				...action.payload
+			]
 		default :
 			return state;
 	}

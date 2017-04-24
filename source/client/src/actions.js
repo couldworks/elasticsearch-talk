@@ -80,6 +80,20 @@ export const ClearSearch = () => {
 	}
 }
 
+export const AllSuggestions = () => dispatch =>{
+
+	fetch("http://localhost:3333/suggestions/")
+		.then(response => response.json())
+		.then(suggestions => {
+			let bulk = suggestions.map(value => value._source);
+			dispatch(AddSuggestionsBulk(bulk));
+		})
+		.catch(errir => {
+			dispatch(AddError(error.message));
+		});
+
+}
+
 export const AddSuggestionsBulk = (suggestions=[]) =>{
 	return{
 		type: C.ADD_SUGGESTIONS,

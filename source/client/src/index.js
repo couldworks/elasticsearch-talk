@@ -5,7 +5,7 @@ import React from "react";
 import { render } from "react-dom";
 import App from "./components/app.js"
 
-const store = storeFactory(initialState);
+const store = storeFactory();
 //store.dispatch(AllNews());
 
 render(<App />, document.getElementById("react-container"));
