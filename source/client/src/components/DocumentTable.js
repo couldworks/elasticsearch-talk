@@ -1,5 +1,5 @@
 import React from "react";
-import PaginationDocument from "../components/PaginationDocument";
+import PaginationDocument from "../containers/PaginationDocument";
 
 
 export default class DocumentTable extends React.Component {
