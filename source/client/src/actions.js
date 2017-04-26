@@ -16,18 +16,26 @@ export function AddNewsBulk(news=[]){
 	}
 }
 
-export const AllNews = () => dispatch =>{
+export const GetNews = () => {
+	return {
+		type: C.GET_NEWS,
+		payload: ""
+	}
+}
+
+export const FetchAllNews = () => dispatch =>{
 
 	fetch("http://localhost:3333/news/")
 		.then(response => response.json())
 		.then(news => {
 			news.hits.map(value => dispatch(AddNews(value._source)));
 		})
-		.catch(errir => {
+		.catch(error => {
 			dispatch(AddError(error.message));
 		});
 
 }
+
 
 export function AddNews(news={}){
 	return {
@@ -66,11 +74,17 @@ export const ClearDidyoumean = () =>{
 	}
 }
 
-export const Search = (search="") =>{
-	return {
-		type: C.CHANGE_SEARCH,
-		payload: search
-	}
+export const Search = (query="") => dispatch =>{
+
+	fetch("http://localhost:3333/news/")
+		.then(response => response.json())
+		.then(news => {
+			console.log(queryquery);
+		})
+		.catch(error => {
+			dispatch(AddError(error.message));
+		});
+
 }
 
 export const ClearSearch = () => {
@@ -88,7 +102,7 @@ export const AllSuggestions = () => dispatch =>{
 			let bulk = suggestions.map(value => value._source);
 			dispatch(AddSuggestionsBulk(bulk));
 		})
-		.catch(errir => {
+		.catch(error => {
 			dispatch(AddError(error.message));
 		});
 

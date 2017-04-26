@@ -44,3 +44,4 @@ const logger = store => next => action => {
 export default (initialState={}) => {
 	return applyMiddleware(thunk, logger, consoleMessages)(createStore)(appReducer, initialState);
 }
+

@@ -1,8 +1,14 @@
 import React from "react";
-import {SearchPanel, ResultPanel} from "./DocumentPanel.js";
+import SearchPanel from "../containers/SearchPanel.js";
+import ResultPanel from "../containers/ResultPanel.js";
 import TopoApp from "./Topo.js";
+import storeFactory from "../store";
+import {Provider} from "react-redux";
+import { render } from "react-dom";
 
-export default class App extends React.Component {
+let store = storeFactory();
+
+export class App extends React.Component {
 	constructor(props){
 		super(props);
 	}
@@ -14,3 +20,4 @@ export default class App extends React.Component {
 		</div>;
 	}
 }
+

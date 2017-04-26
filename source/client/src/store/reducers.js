@@ -60,6 +60,9 @@ export const AllNews = (state=[], action) =>{
 				];
 		case C.REMOVE_NEWS :
 			return state.filter(news => news.title !== action.payload);
+		case C.GET_NEWS :
+			console.log("hihi");
+			return state;
 		default:
 			return state;
 	}
@@ -71,8 +74,10 @@ export const AllSuggestions = (state=[], action) => {
 
 		case C.CLEAR_SUGGESTIONS : 
 			return [];
+
 		case C.CHANGE_SUGGESTIONS :
 			return action.payload;
+
 		case C.ADD_SUGGESTIONS :
 			return [
 				...state,
@@ -129,6 +134,7 @@ export const PageSize = (state=1, action) =>
 		state
 
 
+
 export default combineReducers({
 	Didyoumean,
 	Search,
@@ -141,3 +147,4 @@ export default combineReducers({
 	AllNews,
 	Errors
 });
+
