@@ -7,12 +7,13 @@ export default class DocumentRow extends React.Component {
 	}
 
 	render(){
-		const {title, date, result} = this.props.result;
+		const {title, timestamp, text} = this.props.result;
+		
 		return <tr>
 					<td>
 						<h2>{title}</h2>
-						<small>{date}</small>
-						<p>{description}</p>
+						<small>{timestamp}</small>
+						<p>{text}</p>
 					</td>
 				</tr>
 	}

@@ -39,6 +39,7 @@ const logger = store => next => action => {
   let result = next(action);
   console.log('Next state', store.getState());
   return result;
+  
 }
 
 export default (initialState={}) => {
