@@ -16,6 +16,8 @@ import {
 
 let store = storeFactory(initialState);
 
+window.store = store;
+
 const routes = (
 	<Provider store={store}>
 	   <HashRouter>

@@ -2,11 +2,24 @@ import React from "react";
 import PaginationDocument from "../containers/PaginationDocument";
 import PropTypes from 'prop-types';
 import DocumentRow from "../components/DocumentRow.js";
+import storeFactory from "../store";
 
 
-const DocumentTable = ({documents}) => {
-	let items = documents.map((document, i) => <DocumentRow result={document} key={i}/>)
-	return (<div>
+
+class DocumentTable extends React.Component {
+	
+	constructor(props){
+		super(props);
+	}
+
+	componentDidMount(){
+		this.props.fetchNews();
+	}
+	
+	render() {
+		let items = this.props.documents.map((document, i) => <DocumentRow result={document} key={i}/>)
+
+		return (<div>
 				<table>
 					<tbody>
 						{items}
@@ -14,6 +27,7 @@ const DocumentTable = ({documents}) => {
 				</table>
 				<PaginationDocument />
 			</div>);
+	}
 }
 
 DocumentTable.propTypes = {
