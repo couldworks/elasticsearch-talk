@@ -1,5 +1,6 @@
 import ResultPanel from "../components/ResultPanel";
 import {connect} from "react-redux";
+import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -18,4 +19,5 @@ const ResultPanelContainer = connect(
 	mapDispatchToProps
 )(ResultPanel);
 
-export default ResultPanelContainer;
+// export default ResultPanelContainer;
+export default withRouter(ResultPanel);

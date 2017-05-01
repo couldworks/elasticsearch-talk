@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import SearchPanel from "../components/SearchPanel";
+import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -20,4 +21,5 @@ const SearchPanelContainer = connect(
 	}
 )(SearchPanel);
 
-export default SearchPanelContainer;
+// export default SearchPanelContainer;
+export default withRouter(SearchPanel);

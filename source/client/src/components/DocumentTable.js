@@ -30,8 +30,8 @@ class DocumentTable extends React.Component {
 	}
 }
 
-DocumentTable.propTypes = {
-	documents: PropTypes.array
-}
+// DocumentTable.propTypes = {
+// 	documents: PropTypes.array
+// }
 
 export default DocumentTable;
