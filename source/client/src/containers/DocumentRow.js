@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import DocumentRow from "../components/DocumentRow";
+import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -20,4 +21,5 @@ const DocumentRowContainer = connect(
 	mapDispatchToProps
 )(DocumentRow);
 
-export default DocumentRowContainer;
+export default withRouter(DocumentRowContainer);
+//export default DocumentRowContainer;

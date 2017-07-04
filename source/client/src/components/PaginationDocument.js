@@ -6,8 +6,8 @@ const PaginationDocument = ({NextToken}) =>{
 	return <span>{NextToken}</span>
 }
 
-PaginationDocument.propTypes = {
-	NextToken: PropTypes.string
-}
+// PaginationDocument.propTypes = {
+// 	NextToken: PropTypes.string
+// }
 
 export default PaginationDocument;

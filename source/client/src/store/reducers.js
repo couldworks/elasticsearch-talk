@@ -1,5 +1,6 @@
 import C from "../constants";
-import { combineReducers } from "redux"
+import { combineReducers } from "redux";
+import { routeReducer } from "react-router-redux" ;
 
 export const ActualPage = (state=1, action) => 
 	(action.type === C.SET_ACTUALPAGE) ?
