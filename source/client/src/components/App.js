@@ -13,7 +13,7 @@ export class App extends React.Component {
 		super(props);
 	}
 	render(){
-		return <div>
+		return <div className={"app"}>
 			<TopoApp />
 			<SearchPanel />
 			<ResultPanel />

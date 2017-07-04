@@ -1,5 +1,6 @@
 const path = require('path');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: "./src/index.js",
@@ -34,8 +35,8 @@ module.exports = {
 
             },
             {
-                test: /\.scss/,
-                loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
+                test: /\.scss$/,
+                loaders: ["style", "css?sourceMap", "sass?sourceMap"]
             },
             {
             	test: /\.(jpe?g|png|gif|svg)$/i,
@@ -52,6 +53,9 @@ module.exports = {
             cssProcessor: require('cssnano'),
             cssProcessorOptions: {discardComments: {removeAll: true}},
             canPrint: true
+        }),
+		new ExtractTextPlugin('dist/content/styles.css', {
+            allChunks: true
         })
     ]
 }

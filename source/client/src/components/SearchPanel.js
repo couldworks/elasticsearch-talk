@@ -1,5 +1,7 @@
 import React from "react";
 import {Search} from "../actions.js";
+import {Grid, Row, Col, FormGroup, InputGroup, FormControl, Button} from "react-bootstrap";
+import FontAwesome from 'react-fontawesome';
 
 export default class SearchPanel extends React.Component {
 	constructor(props){
@@ -7,13 +9,28 @@ export default class SearchPanel extends React.Component {
 		this.state = {query: ""};
 		this.search = this.search.bind(this);
 	}
+	handleKeyPress(key){
+		if (key.key === 'Enter') {
+			this.search();
+		}
+	}
 	search(){
 		console.log(this.state.query);
 	}
 	render(){
-		return <div>
-			<input type="text" placeholder="Search..." value={this.state.query} onChange={(e) => this.setState({query: e.target.value})}/>
-			<button onClick={this.search}> Search! </button>
-		</div>;
+		return <Grid className={"searchPanel"}>
+			<Row>
+				<Col xs={6} md={6} mdOffset={3}>
+					<FormGroup>
+						<InputGroup>
+							<FormControl type="text" placeholder="Search..." value={this.state.query} onChange={(e) => this.setState({query: e.target.value})} onKeyPress={this.handleKeyPress}/>
+							<InputGroup.Button>
+								<Button  onClick={this.search}><FontAwesome name="" className={"fa fa-search"} /></Button>
+							</InputGroup.Button>
+						</InputGroup>
+					</FormGroup>
+				</Col>
+			</Row>
+		</Grid>;
 	}
 }

@@ -1,5 +1,5 @@
 import storeFactory from "./store";
-import { GetNews, AddSuggestionsBulk } from "./actions";
+import { GetNews, AddSuggestionsBulk, FetchAllNews } from "./actions";
 import initialState from "./initialState";
 import React from "react";
 import { render } from "react-dom";
@@ -14,7 +14,9 @@ import {
   Link
 } from 'react-router-dom';
 
-let store = storeFactory(initialState);
+let store = storeFactory();
+
+store.dispatch(FetchAllNews());
 
 const routes = (
 	<Provider store={store}>

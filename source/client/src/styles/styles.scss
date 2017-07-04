@@ -1,0 +1,33 @@
+$mainBackground: #f7f7f7;
+$titleLinkColor: #6c00a2;
+
+.tableResults{
+   .row-content{
+        margin-top: 10px;
+
+        .titleDoc{
+            font-size: 1.31em;
+            color: $titleLinkColor;
+        }
+
+        .timestamp{
+            display: block;
+            font-style: italic;
+        }
+
+        .seeMore{
+            display: none;
+        }
+
+        &:hover {
+            background: $mainBackground;
+
+            .seeMore{
+                position: absolute;
+                margin-right: 10px;
+                right: 0px;
+                display: inline;
+            }
+        }
+   }
+}
