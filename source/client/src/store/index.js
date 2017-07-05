@@ -2,15 +2,9 @@ import C from "../constants";
 import appReducer from "./reducers";
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
-require('../styles/styles.scss');
-
-//const consoleMessages = function (store) {
-	//return function (next) {
-	//	return function(action){
-
-	//	}
-	//}
-//}
+//require('../styles/styles.scss');
+//import style from "../styles/styles.scss";
+require("!style-loader!css-loader!sass-loader!../styles/styles.scss");
 
 const consoleMessages = store => next => action => {
 	

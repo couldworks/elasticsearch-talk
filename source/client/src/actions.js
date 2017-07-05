@@ -24,33 +24,28 @@ export const GetNews = () => {
 }
 
 export const FetchAllNews = () => dispatch =>{
-	var myHeaders = new Headers();
-	myHeaders.append("Access-Control-Allow-Origin", "*");
-	myHeaders.append("Content-Type", "application/json");
-	myHeaders.append("Accept", "application/json");
-	var myInit = { method: 'GET',
-               headers: myHeaders,
-               mode: 'cors',
-               cache: 'default' };
 
-	var request = new Request('http://vmtalks.cloudapp.net/enwikinews/_search', {
-		method: 'GET', 
-		mode: 'cors', 
-		headers: new Headers({
-        'Access-Control-Allow-Origin':'*',
-        'Content-Type': 'application/json'
-		})
-	});
-
-	fetch(request)
+	fetch("http://localhost:3333/news/")
 		.then(response => response.json())
 		.then(news => {
-			console.log(news);
 			news.hits.map(value => dispatch(AddNews(value._source)));
 		})
 		.catch(error => {
+			console.log(error);
 			dispatch(AddError(error.message));
 		});
+
+	// fetch("http://vmtalks.cloudapp.net/enwikinews/page/_search", {method: "get", mode: "no-cors", headers : { 
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json'
+    //    }})
+	// 	.then(function(response){
+	// 		console.log(response.json());
+	// 	})
+	// 	.catch(error => {
+	// 		console.log(error);
+	// 		dispatch(AddError(error.message));
+	// 	});
 
 }
 
