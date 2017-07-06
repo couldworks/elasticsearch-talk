@@ -13,7 +13,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const Container = connect(
 	(state, props) => ({
-		documents : state.AllNews
+	    documents : state.AllNews,
+        total: state.Total
 	}),
 	mapDispatchToProps
 )(DocumentTable);

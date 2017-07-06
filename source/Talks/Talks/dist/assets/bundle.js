@@ -20984,7 +20984,7 @@ exports.default = DocumentRow;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21016,34 +21016,67 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var DocumentTable = function (_React$Component) {
-	_inherits(DocumentTable, _React$Component);
+    _inherits(DocumentTable, _React$Component);
 
-	function DocumentTable(props) {
-		_classCallCheck(this, DocumentTable);
+    function DocumentTable(props) {
+        _classCallCheck(this, DocumentTable);
 
-		return _possibleConstructorReturn(this, (DocumentTable.__proto__ || Object.getPrototypeOf(DocumentTable)).call(this, props));
-	}
+        var _this = _possibleConstructorReturn(this, (DocumentTable.__proto__ || Object.getPrototypeOf(DocumentTable)).call(this, props));
 
-	_createClass(DocumentTable, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {}
-	}, {
-		key: "render",
-		value: function render() {
-			var items = this.props.documents.map(function (document, i) {
-				return _react2.default.createElement(_DocumentRow2.default, { result: document, key: i });
-			});
+        _this.renderTotal.bind(_this);
+        return _this;
+    }
 
-			return _react2.default.createElement(
-				_reactBootstrap.Grid,
-				{ className: "tableResults" },
-				items,
-				_react2.default.createElement(_PaginationDocument2.default, null)
-			);
-		}
-	}]);
+    _createClass(DocumentTable, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {}
+    }, {
+        key: "renderTotal",
+        value: function renderTotal() {
+            this.props.total > 0 ? _react2.default.createElement(
+                _reactBootstrap.Col,
+                { md: 8, xs: 8, mdOffset: 2, xsOffset: 2, className: "row-content" },
+                _react2.default.createElement(
+                    "b",
+                    null,
+                    this.props.total,
+                    " results"
+                ),
+                _react2.default.createElement("br", null)
+            ) : "";
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var items = this.props.documents.map(function (document, i) {
+                return _react2.default.createElement(_DocumentRow2.default, { result: document, key: i });
+            });
 
-	return DocumentTable;
+            return _react2.default.createElement(
+                _reactBootstrap.Grid,
+                { className: "tableResults" },
+                _react2.default.createElement(
+                    _reactBootstrap.Row,
+                    null,
+                    _react2.default.createElement(
+                        _reactBootstrap.Col,
+                        { md: 8, xs: 8, mdOffset: 2, xsOffset: 2, className: "row-content" },
+                        _react2.default.createElement(
+                            "b",
+                            null,
+                            this.props.total,
+                            " results"
+                        ),
+                        _react2.default.createElement("br", null)
+                    )
+                ),
+                items,
+                _react2.default.createElement(_PaginationDocument2.default, null)
+            );
+        }
+    }]);
+
+    return DocumentTable;
 }(_react2.default.Component);
 
 exports.default = DocumentTable;
@@ -21803,7 +21836,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 
 var Container = (0, _reactRedux.connect)(function (state, props) {
 	return {
-		documents: state.AllNews
+		documents: state.AllNews,
+		total: state.Total
 	};
 }, mapDispatchToProps)(_DocumentTable2.default);
 
