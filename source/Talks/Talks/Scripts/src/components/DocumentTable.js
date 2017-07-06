@@ -1,7 +1,7 @@
 import React from "react";
 import PaginationDocument from "../containers/PaginationDocument";
 import PropTypes from 'prop-types';
-import DocumentRow from "../components/DocumentRow.js";
+import DocumentRow from "../containers/DocumentRow.js";
 import {Grid, Row, Col} from "react-bootstrap";
 
 

@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using Elasticsearch.Net;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,9 +46,11 @@ namespace Talks.Controllers
 
         [HttpGet]
         [Route("api/wiki/{query}/{from}/{take}")]
-        public IEnumerable<Page> Search(string query="", int from=0, int take=15)
+        public ResponseData<Page> Search(string query = "", int from = 0, int take = 15)
         {
-            var settings = new ConnectionSettings(new Uri("http://vmtalks.cloudapp.net")).DefaultIndex("enwikinews");
+            var settings = new ConnectionSettings(new Uri("http://vmtalks.cloudapp.net")).DefaultIndex("enwikinews_v3");
+            settings.DisableDirectStreaming();
+
             var client = new ElasticClient(settings);
 
             var searchResponse = client.Search<Page>(s => s
@@ -67,16 +70,38 @@ namespace Talks.Controllers
                             .NumberOfFragments(0)
                 )
             );
-            
+
             var result = searchResponse.Hits.Select(x => {
                 x.Source.id = x.Id;
                 var titleHighs = x.Highlights.Where(p => p.Key.Equals("title"));
                 var textHighs = x.Highlights.Where(p => p.Key.Equals("text"));
 
-                x.Source.title = titleHighs.Count() > 0 ? titleHighs.ElementAt(0).Value.Highlights.ElementAt(0).ToString() : x.Source.title;
+                x.Source.title_highlighted = titleHighs.Count() > 0 ? titleHighs.ElementAt(0).Value.Highlights.ElementAt(0).ToString() : x.Source.title;
                 x.Source.text = textHighs.Count() > 0 ? textHighs.ElementAt(0).Value.Highlights.ElementAt(0).ToString() : x.Source.text;
                 return x.Source; }).ToList();
-            return result;
+
+            //client.Search<Page>(s => s.Suggest(ss => ss.Phrase("suggest", m => m.Analyzer("reverse").(SuggestMode.Always).Text(query).Size(2).Field(fi => fi.title))));
+            var suggestionsQuery = client.Search<Page>(s => s.Suggest(ss => ss
+                .Phrase("simple_phrase", ph => ph
+                    .Text(query)
+                    .Field(fi => fi.title)
+                    .Size(2)
+                    .DirectGenerator(di => di
+                        .Field(fi => fi.title)
+                        .SuggestMode(SuggestMode.Always), di => di
+                        .Field(fi => fi.title)
+                        .SuggestMode(SuggestMode.Always)
+                        .PreFilter("reverse")
+                        .PostFilter("reverse")))));
+
+            List<string> suggestions = suggestionsQuery.Suggest.Count > 0 ? suggestionsQuery.Suggest.ElementAt(0).Value.ElementAt(0).Options.Select(x => { return x.Text; }).ToList() : new List<string>();
+
+            ResponseData<Page> response = new ResponseData<Page>();
+            response.Data = result;
+            response.Total = searchResponse.Total;
+            response.Suggestions = suggestions;
+
+            return response;
         }
 
         [ElasticsearchType(IdProperty = nameof(id))]
@@ -86,6 +111,7 @@ namespace Talks.Controllers
             public string title { get; set; }
             public string timestamp { get; set; }
             public string text { get; set; }
+            public string title_highlighted { get; set; }
             public string text_bytes { get; set; }
             public List<string> category { get; set; }
             public List<string> template { get; set; }
@@ -102,7 +128,7 @@ namespace Talks.Controllers
             public string wikibase_item { get; set; }
             public string version_type { get; set; }
             public Int64 version { get; set; }
-            public bool defaultsort { get; set; }
+            public string defaultsort { get; set; }
             public string wiki { get; set; }
             public string content_model { get; set; }
         }
@@ -110,6 +136,13 @@ namespace Talks.Controllers
         public class Redirect
         {
             public string title { get; set; }
+        }
+
+        public class ResponseData<T>
+        {
+            public List<T> Data { get; set; }
+            public Int64 Total { get; set; }
+            public List<string> Suggestions { get; set; }
         }
     }
 }

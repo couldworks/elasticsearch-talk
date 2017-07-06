@@ -1,6 +1,7 @@
 import React from "react";
 import SearchPanel from "../containers/SearchPanel.js";
 import ResultPanel from "../containers/ResultPanel.js";
+import DidYouMean from "../containers/DidYouMean.js";
 import TopoApp from "./Topo.js";
 
 import Loading from "../containers/Loading.js";
@@ -14,7 +15,8 @@ export class Main extends React.Component {
 	render(){
 		return <div>
 			<TopoApp />
-			<SearchPanel />
+            <SearchPanel />
+            <DidYouMean />
             <Loading />
 			<ResultPanel />
 		</div>;

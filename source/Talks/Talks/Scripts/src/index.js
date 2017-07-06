@@ -9,8 +9,6 @@ import {Provider} from "react-redux";
 import {Router} from "react-router";
 import { BrowserRouter, HashRouter,  Switch,  Route,  Link} from 'react-router-dom';
 
-
-
 let store = storeFactory();
 
 window.store = store;

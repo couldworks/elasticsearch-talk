@@ -148,6 +148,7 @@
     <Content Include="Scripts\src\actions.js" />
     <Content Include="Scripts\src\components\App.js" />
     <Content Include="Scripts\src\components\Details.js" />
+    <Content Include="Scripts\src\components\DidYouMean.js" />
     <Content Include="Scripts\src\components\DocumentRow.js" />
     <Content Include="Scripts\src\components\DocumentTable.js" />
     <Content Include="Scripts\src\components\Header.js" />
@@ -159,6 +160,7 @@
     <Content Include="Scripts\src\components\Topo.js" />
     <Content Include="Scripts\src\constants.js" />
     <Content Include="Scripts\src\containers\Details.js" />
+    <Content Include="Scripts\src\containers\DidYouMean.js" />
     <Content Include="Scripts\src\containers\DocumentRow.js" />
     <Content Include="Scripts\src\containers\DocumentTable.js" />
     <Content Include="Scripts\src\containers\Loading.js" />

@@ -60,7 +60,9 @@ export const AllNews = (state=[], action) =>{
 					...action.payload
 				];
 		case C.REMOVE_NEWS :
-			return state.filter(news => news.title !== action.payload);
+            return state.filter(news => news.title !== action.payload);
+        case C.REMOVE_ALL_NEWS:
+            return [];
 		case C.GET_NEWS :
 			console.log("hihi");
 			return state;
@@ -94,7 +96,6 @@ export const Didyoumean = (state=[], action) => {
 	switch(action.type){
 		case C.ADD_DIDYOUMEAN :
 			return [
-				...state,
 				...action.payload
 			];
 		case C.CLEAR_DIDYOUMEAN :
@@ -104,7 +105,7 @@ export const Didyoumean = (state=[], action) => {
 	}
 }
 
-export const Search = (state="", action) => {
+export const Query = (state="", action) => {
 
 	switch(action.type)
 	{
@@ -137,11 +138,25 @@ export const PageSize = (state=1, action) =>
 export const Loading = (state=false, action) => 
     (action.type === C.SET_LOADING) ?
 		action.payload :
-		state
+        state
+
+export const QueryFetched = (state = false, action) => {
+    switch (action.type) {
+        case C.QUERY_FETCHED:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const Total = (state = 0, action) =>
+    (action.type === C.TOTAL_NEWS) ?
+        action.payload :
+        state
 
 export default combineReducers({
 	Didyoumean,
-	Search,
+	Query,
 	EditNews,
 	PageSize,
 	NextToken,
@@ -150,6 +165,8 @@ export default combineReducers({
 	AllSuggestions,
 	AllNews,
     Errors,
-    Loading
+    Loading,
+    QueryFetched,
+    Total
 });
 

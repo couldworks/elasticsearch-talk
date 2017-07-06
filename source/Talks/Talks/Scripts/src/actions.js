@@ -74,7 +74,6 @@ export const AddDidyoumean = (phrases=[]) =>{
 }
 
 export const ClearDidyoumean = () =>{
-
     return {
         type: C.CLEAR_DIDYOUMEAN,
         payload: null
@@ -96,6 +95,13 @@ export const FetchNews = (id=0) => dispatch =>{
     });
 }
 
+export const CleanAllNews = () => {
+    return {
+        type: C.REMOVE_ALL_NEWS,
+        payload: []
+    }
+}
+
 export const Search = (query="", from=0, take=20) => dispatch =>{
 
     let searchUrl = "http://localhost:63979/api/wiki/{query}/{from}/{take}"
@@ -106,18 +112,39 @@ export const Search = (query="", from=0, take=20) => dispatch =>{
     dispatch(SetLoading(true));
 
     fetch(searchUrl)
-		.then(response => response.json())
-		.then(news => {
-		    news.map(value => dispatch(AddNews(value)));
+        .then(response => response.json())
+        .then(news => {
+
+            news.Data.map(value => dispatch(AddNews(value)));
+            dispatch(AddDidyoumean(news.Suggestions));
+            dispatch(SetTotal(news.Total));
+            
 		    return true;
 		})
         .then(end => {
             dispatch(SetLoading(false));
+            
         })
 		.catch(error => {
 		    dispatch(AddError(error.message));
 		});
 
+}
+
+export const QueryFetched = (fetchQuery) => {
+    return {
+        type: C.QUERY_FETCHED,
+        payload: fetchQuery
+    }
+}
+
+
+
+export const FetchQuery = (query) => {
+    return {
+        type: C.CHANGE_SEARCH,
+        payload: query
+    }
 }
 
 export const ClearSearch = () => {
@@ -194,6 +221,13 @@ export const ClearError = (index=1) => {
     return {
         type: C.CLEAR_ERROR,
         payload: index
+    }
+}
+
+export const SetTotal = (total = 0) => {
+    return {
+        type: C.TOTAL_NEWS,
+        payload: total
     }
 }
 
