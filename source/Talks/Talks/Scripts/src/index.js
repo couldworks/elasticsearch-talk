@@ -5,6 +5,7 @@ import React from "react";
 import { render } from "react-dom";
 import {App} from "./components/app";
 import Details from "./containers/Details";
+import TermVector from "./containers/TermVector";
 import {Provider} from "react-redux";
 import {Router} from "react-router";
 import { BrowserRouter, HashRouter,  Switch,  Route,  Link} from 'react-router-dom';
@@ -19,6 +20,7 @@ const routes = (
 			<Switch>
 				<Route exact path="/" component={App} />
                 <Route exact path="/details/:id" component={Details} />
+                <Route exact path="/terms/:id" component={TermVector} />
 			</Switch>	
 	   </BrowserRouter>
 	</Provider> 

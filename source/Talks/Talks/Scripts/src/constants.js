@@ -21,7 +21,9 @@ const constants = {
 	SEARCH: "SEARCH",
     SET_LOADING: "SET_LOADING",
     QUERY_FETCHED: "QUERY_FETCHED",
-    TOTAL_NEWS: "TOTAL_NEWS"
+    TOTAL_NEWS: "TOTAL_NEWS",
+    GET_TERM_VECTOR: "GET_TERM_VECTOR",
+    SET_TERM_VECTOR: "SET_TERM_VECTOR"
 }
 
 export default constants

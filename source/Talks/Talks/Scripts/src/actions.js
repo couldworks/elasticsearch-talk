@@ -131,14 +131,41 @@ export const Search = (query="", from=0, take=20) => dispatch =>{
 
 }
 
+export const FetchTermVector = (id) => dispatch => {
+    let searchUrl = "http://localhost:63979/api/wiki/terms/{id}"
+        .replace("{id}", id)
+
+    fetch(searchUrl)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+            dispatch(SetTermVector(response));
+        })
+		.catch(error => {
+		    dispatch(AddError(error.message));
+		});
+}
+
+export const SetTermVector = (terms) => {
+    return {
+        type: C.SET_TERM_VECTOR,
+        payload: terms
+    }
+}
+
+export const GetTermVector = () => {
+    return {
+        type: C.GET_TERM_VECTOR,
+        payload: null
+    }
+}
+
 export const QueryFetched = (fetchQuery) => {
     return {
         type: C.QUERY_FETCHED,
         payload: fetchQuery
     }
 }
-
-
 
 export const FetchQuery = (query) => {
     return {

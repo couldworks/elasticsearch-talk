@@ -157,6 +157,7 @@
     <Content Include="Scripts\src\components\PaginationDocument.js" />
     <Content Include="Scripts\src\components\ResultPanel.js" />
     <Content Include="Scripts\src\components\SearchPanel.js" />
+    <Content Include="Scripts\src\components\TermVector.js" />
     <Content Include="Scripts\src\components\Topo.js" />
     <Content Include="Scripts\src\constants.js" />
     <Content Include="Scripts\src\containers\Details.js" />
@@ -167,6 +168,7 @@
     <Content Include="Scripts\src\containers\PaginationDocument.js" />
     <Content Include="Scripts\src\containers\ResultPanel.js" />
     <Content Include="Scripts\src\containers\SearchPanel.js" />
+    <Content Include="Scripts\src\containers\TermVector.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\store\index.js" />
     <Content Include="Scripts\src\store\reducers.js" />

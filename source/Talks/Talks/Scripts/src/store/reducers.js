@@ -154,6 +154,16 @@ export const Total = (state = 0, action) =>
         action.payload :
         state
 
+export const TermVector = (state=null, action) => {
+
+    switch(action.type) {
+        case C.SET_TERM_VECTOR :
+            return action.payload;
+        default :
+            return state;
+    }
+}
+
 export default combineReducers({
 	Didyoumean,
 	Query,
@@ -167,6 +177,7 @@ export default combineReducers({
     Errors,
     Loading,
     QueryFetched,
-    Total
+    Total,
+    TermVector
 });
 

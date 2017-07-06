@@ -45,10 +45,26 @@ namespace Talks.Controllers
         }
 
         [HttpGet]
+        [Route("api/wiki/terms/{id}")]
+        public TermVectorResponse GetTerms(string id = "")
+        {
+            var settings = new ConnectionSettings(new Uri("http://vmtalks.cloudapp.net")).DefaultIndex("wikinews");
+            settings.DisableDirectStreaming();
+
+            var client = new ElasticClient(settings);
+
+            var result = client.TermVectors<Page>(x => x.Id(id).Fields(fi => fi.title).Offsets(true).Payloads(true).Positions(true).TermStatistics(true).FieldStatistics(true));
+            var searchResponse = client.Get<Page>(id);
+
+            var response = new TermVectorResponse() {data = result.TermVectors["title"],  title = searchResponse.Source.title};
+            return response;
+        }
+
+        [HttpGet]
         [Route("api/wiki/{query}/{from}/{take}")]
         public ResponseData<Page> Search(string query = "", int from = 0, int take = 15)
         {
-            var settings = new ConnectionSettings(new Uri("http://vmtalks.cloudapp.net")).DefaultIndex("enwikinews_v3");
+            var settings = new ConnectionSettings(new Uri("http://vmtalks.cloudapp.net")).DefaultIndex("wikinews");
             settings.DisableDirectStreaming();
 
             var client = new ElasticClient(settings);
@@ -131,6 +147,12 @@ namespace Talks.Controllers
             public string defaultsort { get; set; }
             public string wiki { get; set; }
             public string content_model { get; set; }
+        }
+
+        public class TermVectorResponse
+        {
+            public string title { get; set; }
+            public TermVector data { get; set; }
         }
 
         public class Redirect
